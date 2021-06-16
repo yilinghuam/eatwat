@@ -5,7 +5,7 @@ const eatServices = require ('../services/eats_services')
 const formServices = require('../services/form_services')
 const cloudinaryServices = require('../services/cloudinary_services')
 const mrtServices = require('../services/mrt_services')
-
+const fine = 10
 module.exports = {
     index: async(req,res) => {
         let mrtStations =[]
