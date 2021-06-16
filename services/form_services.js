@@ -25,8 +25,13 @@ module.exports = {
         try {
             let originalFormData = await formDataModel.findOne()
             let targettedFormData = originalFormData[query]
-            targettedFormData[newkey] = req.body.keyValue;
-            delete targettedFormData[item];
+            if(newkey!== item) {
+                targettedFormData[newkey] = req.body.keyValue;
+                delete targettedFormData[item];
+            }
+            if (newkey === item) {
+                targettedFormData[newkey] = req.body.keyValue;
+            }
             const replacedFormData = await formDataModel.findOneAndUpdate({slug:'formData'},originalFormData)
             return replacedFormData
         } catch (err) {
