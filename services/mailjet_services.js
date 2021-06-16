@@ -24,7 +24,7 @@ module.exports = {
 				"Subject": "nil",
 				"Variables": {
                 "name": req.body.user,
-                "link": ''
+                "link": 'https://eatwat-app.herokuapp.com/users/login'
                 }
             }]
             })
@@ -38,6 +38,8 @@ module.exports = {
     },
     sendResetEmail: (req,res,user) => {
         console.log(user)
+        const newlink = `https://eatwat-app.herokuapp.com/users/forgetpassword/${user._id}`
+        console.log(newlink)
         const mailjet = require ('node-mailjet')
             .connect(`${process.env.MAILJET_APIKEY}`, `${process.env.MAILJET_SECRET}`)
         const request = mailjet
@@ -59,8 +61,8 @@ module.exports = {
                 "TemplateLanguage": true,
 				"Subject": "nil",
 				"Variables": {
-                "name": req.user.user,
-                "link": ''
+                "name": user.user,
+                "link": newlink
                 }
             }]
             })

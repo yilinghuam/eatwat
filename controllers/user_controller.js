@@ -2,8 +2,6 @@ const bcrypt = require('bcrypt')
 const saltRounds = 10
 const userServices = require('../services/user_services')
 const mailjetServices = require('../services/mailjet_services')
-const user_services = require('../services/user_services')
-
 
 module.exports = {
     login: (req,res) => {
@@ -68,13 +66,42 @@ module.exports = {
     },
     sendResetEmail: async(req,res) => {
         let user = null
-        user = await userModel.findUserByEmail(req,res)
+        user = await userServices.findUserByEmail(req,res)
 
         if(user !== null) {
             const sendResetEmail = await mailjetServices.sendResetEmail(req,res,user)
         }else{
             res.redirect('/users/forgetpassword')
+            return
         }
         res.redirect('/users/login')
+    },
+    resetpassword: async(req,res) => {
+        let id = req.params.id
+        let user = null
+        user = await userServices.findUserByID(req,res)
+
+        if(!user){
+            res.redirect('users/forgetpassword')
+            return
+        }
+
+        res.render('users/resetpassword',{id:id})
+    },
+
+    updateUserPassword: async(req,res) => {
+        let id = req.params.id
+        console.log(id)
+        let password = ''
+
+        if(req.body.password === req.body.confirm_password) {
+            const user = await userServices.updateUserByID(req,res,id)
+        }else{
+            res.redirect('/users/forgetpassword/'+id)
+            return
+        }
+        // need to add what happens if password not updated
+        res.redirect('/users/login')
+        
     }
 }

@@ -10,6 +10,8 @@ router.post('/login', guestOnly, userController.loginUser)
 router.get('/logout', authenticatedOnly, userController.logout)
 router.get('/forgetpassword',guestOnly,userController.forgetpassword)
 router.post('/forgetpassword',guestOnly,userController.sendResetEmail)
+router.get('/forgetpassword/:id',guestOnly,userController.resetpassword)
+router.patch('/forgetpassword/:id',guestOnly,userController.updateUserPassword)
 
 
 module.exports = router

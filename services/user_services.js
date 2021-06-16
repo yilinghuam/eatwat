@@ -38,5 +38,25 @@ module.exports  = {
             res.redirect('/users/signup')
             return
         }
+    },
+    updateUserByID: async(req,res, id) => {
+        const generatedHash = await bcrypt.hash(req.body.password,saltRounds)
+        try {
+            const user = await userModel.findByIdAndUpdate(id,{hash:generatedHash})
+            return user
+        } catch (err) {
+            console.log(err)
+            res.redirect('/users/forgetpassword'+id)
+            return
+        }
+    },
+    findUserByID: async(req,res) => {
+        try {
+            const user = await userModel.findById(req.params.id)
+            return user
+        } catch (err) {
+            res.redirect('/users/forgetpassword')
+            return
+        }
     }
 }
