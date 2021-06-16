@@ -32,7 +32,7 @@
     <body>
         <%- include('../partials/navbar') %>
 
-        <% if (query !== 'mrt' && query !== 'category') { %>
+        <% if (query === 'ratings' || query === 'price') { %>
         <div class = 'mt-3 container col-12 g-4 d-flex justify-content-center align-items-center overflow-scroll' style = 'height: 80vh'>
 
         <ul class="list-group">
@@ -87,7 +87,29 @@
                 <% }) %>
                 </ul>
             </div>
-            <% }else{ %>
+            <% }else if(query === 'users') { %>
+                 <div class = 'mt-3 container flex-row col-12  d-flex overflow-scroll' style = 'height: 80vh'>
+
+                <ul class="list-unstyled row justify-content-center" style='margin-block-start:0; width:100%' >
+                <% data.forEach(element => { %>
+                    <div class = 'col-2'>
+                    <li class="list-group-item col-2" style='margin:2%; width:100%'>
+                    <div class="d-flex w-100 justify-content-between align-items-center">
+                        <p class=""><%= element.user %></p>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <small>
+                            <form action="/dashboard/users/<%=element._id%>?_method=DELETE" method="POST">
+                                <div class = ''>
+                                    <button type="submit" class="btn btn-dark"><i class="fas fa-times"></i></button>
+                                </div>
+                            </form>
+                        </small>
+                    </div>
+                    </li>
+                    </div>
+                    <% }) %>
+                </ul>
+                <% }else{ %>
                  <div class = 'mt-3 container col-12  d-flex overflow-scroll' style = 'height: 80vh'>
 
                 <ul class="list-unstyled row justify-content-center" style='margin-block-start:0' >

@@ -47,9 +47,13 @@ module.exports = {
         let imageURL = ''
 
         // only upload if there is image file uploaded
-        if(req.file !== undefined) {
+        if(req.file !== undefined && !req.body.imagelink) {
             const result = await cloudinaryServices.uploadImage(req,res)
             imageURL = result.url
+        }
+        // upload if image link provided
+        if (req.file === undefined && req.body.imagelink) {
+            imageURL = req.body.imagelink
         }
         
         const singleEatCreate = await eatServices.create(req,res,imageURL)
@@ -105,9 +109,12 @@ module.exports = {
             return
         }
         // if there is change in image
-        if(req.file !== undefined) {
+        if(req.file !== undefined && !req.body.imagelink) {
             const result = await cloudinaryServices.uploadImage(req,res)
             const imageURL = result.url
+            const singleEatUpdate = await eatServices.updateWithImage(req,res,imageURL)
+        }else if(req.body.imagelink) {
+            const imageURL = req.body.imagelink
             const singleEatUpdate = await eatServices.updateWithImage(req,res,imageURL)
         }else {  // if no change in imageurl
             const singleEatUpdate = await eatServices.updateWithoutImage(req,res)

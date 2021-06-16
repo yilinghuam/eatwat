@@ -58,5 +58,33 @@ module.exports  = {
             res.redirect('/users/forgetpassword')
             return
         }
-    }
+    },
+    findAllUser: async(req,res) => {
+        try {
+            const user = await userModel.find()
+            return user
+        } catch (err) {
+            console.log(err)
+            res.redirect('/dashboard')
+            return
+        }
+    },
+    deleteUserByID: async(req,res,id) => {
+        try {
+            const user = await userModel.deleteOne({_id:id})
+            return user
+        } catch (err) {
+            res.redirect('/users/forgetpassword')
+            return
+        }
+    },
+    findUserByIDDashboard: async(req,res,id) => {
+        try {
+            const user = await userModel.findById(id)
+            return user
+        } catch (err) {
+            res.redirect('/users/forgetpassword')
+            return
+        }
+    },
 }

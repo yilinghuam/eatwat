@@ -41,7 +41,7 @@ let adduser = async() => {
     return userModel.insertMany(data)
   })
   .then(insertResp => {
-      console.log('successful mrt data insertion')
+      console.log('successful user data insertion')
   })
   .catch(err => {
     console.log(err)

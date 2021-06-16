@@ -222,8 +222,17 @@ module.exports = {
             return `eat find error`
         }
         
+    },
+    deleteAllByUser: async(req,res,user) => {
+        try {
+            const eats = await eatModel.deleteMany({user:user})
+            return eats
+        } catch (err) {
+            console.log(err)
+            res.statusCode = 500
+            return `eat deletion error`
+        }
     }
-
 }
 
 function processPlaceNameAndAddress(req) {

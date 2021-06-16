@@ -14,6 +14,8 @@ let data = [
         ratings: 3,
         price: 3,
         category: 'Fast Food',
+        user: ['lingy','admin']
+
     },
     {
         placeName: 'Yan Palace Restaurant 燕阁大酒楼',
@@ -23,7 +25,9 @@ let data = [
         ratings: 2,
         price: 4,
         category: 'Chinese',
-        comments: 'great duck, will come back here again'
+        comments: 'great duck, will come back here again',
+        user: ['lingy','admin']
+
     },
     {
         placeName: 'Wild Honey',
@@ -33,7 +37,8 @@ let data = [
         ratings: 5,
         price: 4,
         category: 'Brunch',
-        comments: 'Food is so so so so so so so so so good. Will always come for the coffee'
+        comments: 'Food is so so so so so so so so so good. Will always come for the coffee',
+        user: ['lingy','admin']
     },
 ]
 

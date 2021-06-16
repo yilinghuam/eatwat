@@ -4,6 +4,8 @@ const mapAccessToken = `${process.env.MAPBOX_TOKEN}`
 const eatServices = require ('../services/eats_services')
 const formServices = require('../services/form_services')
 const mrtServices = require('../services/mrt_services')
+const userServices = require('../services/user_services')
+
 
 module.exports = {
     index: (req,res) => {
@@ -17,6 +19,8 @@ module.exports = {
 
         if (query === 'mrt') {
             data = await mrtServices.getMRTByAlpha(res)
+        }else if(query === 'users') {
+            data = await userServices.findAllUser(req,res)
         }else {
             data = await formServices.getFormByQuery(res,query)
         }
@@ -30,6 +34,9 @@ module.exports = {
 
         if (query === 'mrt') {
             data = await mrtServices.findOneItem(req,res,item)
+        }else if (query === 'users') {
+            res.redirect('/dashboard')
+            return
         }else{
             data = await formServices.getFormByQuery(res,query)
         }
@@ -51,7 +58,12 @@ module.exports = {
             res.redirect('/dashboard/'+query)
         }
 
-        if (query !== 'mrt') {
+        if(query === 'users') {
+            res.redirect('/dashboard') 
+            return
+        }
+
+        if (query === 'category' || query === 'price' || query === 'ratings') {
             const newkey = req.body.key;
             const replacedFormData = await formServices.updateFormByItem(req,res,query,item,newkey)
             if (query === 'category') {
@@ -78,7 +90,11 @@ module.exports = {
             newFormData = await mrtServices.createMRT(req,res)
             res.redirect('/dashboard/'+query)
         }
-        if (query !== 'mrt') {
+        if(query === 'users') {
+            res.redirect('/dashboard') 
+            return
+        }
+        if (query === 'category' || query === 'price' || query === 'ratings') {
             replacedFormData = await formServices.createForm(req,res,query)   
             res.redirect('/dashboard/'+query)
         }
@@ -102,7 +118,21 @@ module.exports = {
             res.redirect('/dashboard/'+query)
         }
 
-        if (query !== 'mrt') {
+        if(query === 'users') {
+            let id = item
+            console.log(item)
+            originalFormData = await userServices.findUserByIDDashboard(req,res,id)
+            
+            if (Object.keys(originalFormData).length !== 0) {
+                const deleteUser = await userServices.deleteUserByID(req,res,id)
+                const user = originalFormData.user
+                eatsData = await eatServices.deleteAllByUser(req,res,user)
+
+            }
+            res.redirect('/dashboard/'+query)
+        }
+
+        if (query === 'category' || query === 'price' || query === 'ratings') {
             const newkey = req.body.key;
 
             if (query === 'category') {
