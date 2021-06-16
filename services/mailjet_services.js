@@ -21,7 +21,7 @@ module.exports = {
                 ],
                 "TemplateID": 2964906,
                 "TemplateLanguage": true,
-				"Subject": "nil",
+				"Subject": "Eatwat Welcome",
 				"Variables": {
                 "name": req.body.user,
                 "link": 'https://eatwat-app.herokuapp.com/users/login'
@@ -59,7 +59,7 @@ module.exports = {
                 ],
                 "TemplateID": 2965065,
                 "TemplateLanguage": true,
-				"Subject": "nil",
+				"Subject": "Eatwat Reset Password",
 				"Variables": {
                 "name": user.user,
                 "link": newlink
