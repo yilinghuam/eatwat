@@ -13,10 +13,9 @@ let connection = null
 
 let adduser = async() => {
     try {
-        password1 = await bcrypt.hash('123',saltRounds)
-        password2 = await bcrypt.hash('456',saltRounds)
-        console.log(password1)
-        console.log(password2)
+        password1 = await bcrypt.hash( `${process.env.PASSWORD1}`,saltRounds)
+        password2 = await bcrypt.hash(`${process.env.PASSWORD2}`,saltRounds)
+
     } catch (error) {
         
     }
@@ -24,13 +23,13 @@ let adduser = async() => {
     let data = [
         {
             user: 'admin',
-            email: 'lingy93@gmail.com',
+            email: `${process.env.EMAIL1}`,
             role: 'admin',
             hash: password1,
           },
         {
             user: 'lingy',
-            email: 'huamyiling@gmail.com',
+            email: `${process.env.EMAIL2}`,
             role: 'user',
             hash: password2,
         }]
