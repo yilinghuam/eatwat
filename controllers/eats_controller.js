@@ -132,6 +132,7 @@ module.exports = {
         // if no data then add new
         if (eats.length === 0) {
             res.redirect('/eats/new')
+            return
         }
 
         res.render(
