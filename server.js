@@ -13,7 +13,7 @@ const mapsearchRouter = require('./routers/mapsearch_router')
 
 
 const app = express();
-const port = 3000;
+const port = `${process.env.PORT}` || 3000;
 
 // mongoDB info
 const mongoURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}`
