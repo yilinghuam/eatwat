@@ -35,10 +35,12 @@ app.set('view engine', 'ejs')
 mongoose.set('useFindAndModify', false)
 mongoose.set('useCreateIndex', true)
 app.use(setUserVarMiddleware)
+app.use(express.static('public'))
+
 
 // redirect from homepage
 app.get('/',(req,res) => {
-    res.redirect('/users/login')
+    res.render('homepage')
 })
 
 // eat routes
