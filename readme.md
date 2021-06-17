@@ -3,6 +3,8 @@
 ## User Story
 “As a foodie frequenting a multitude of restaurants, I desire an effortless way of recording my ventures, to curate a list of delectable food that I personally savor.”
 
+## HEROKU APP LINK
+[link to App!](https://eatwat-app.herokuapp.com/)
 ----------------------------------
 
 ## Technologies
@@ -70,7 +72,7 @@
 ## RESTful Routes
 |No.|Route      | URL                   | HTTP Verb |Description
 |--|------------|-----------------------|-----------|------------ 
-|1.| Index      |  /                    | GET       | Homepage redirect to login
+|1.| Index      |  /                    | GET       | Homepage
 
 * ### EAT routes
 
@@ -133,5 +135,5 @@
 
 ## Price plans
 * Cloudinary: 25k transformations or 25 GB of managed storage or 25 GB of net viewing bandwidth free
-* Mapbox: up to 10000 tile-query free & 100,000 temporary geocoding free
+* Mapbox: up to 50000 webloads free & 100,000 temporary geocoding free
 * Mailjet: 200 emails per day free
