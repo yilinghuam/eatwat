@@ -78,7 +78,7 @@
 
 |No.|Route      | URL                   | HTTP Verb |Description
 |--|------------|-----------------------|-----------|------------ 
-|1.| Index      |  /                    | GET       | Homepage
+|1.| Index      |  /eats                | GET       | All eats
 |2.| New        |  /eats/new            | GET       | EATS record form
 |3.| Create     |  /eats                | POST      | add new EAT to database
 |4.| Show       |  /eats/:slug          | GET       | show individual EAT with map and image
